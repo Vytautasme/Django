@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if population > 0 %}
+    <h1>CIA YRA NUFILTRUOTI MIESTAI, daugiau nei {{population}} gyventoju</h1>
+  {% else %}
+  <h1>CIA YRA VISI MIESTAI!</h1>
+  {% endif %}
+
+
+<body>
+<h2>Cia yra cities page</h2>
+
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">City</th>
+      <th scope="col">Country</th>
+      <th scope="col">Population</th>
+      <th scope="col">Vote</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for city in cities %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{city.city}}</td>
+          <td><a href="{% url 'countries:by_country' city.country.country %}">{{ city.country.country}}</a></td>
+          <td><a href="{% url 'countries:greater' city.city_population   %}">{{ city.city_population}}</a>
+          <td>{{city.vote}}</td>
+        </tr>
+      {% endfor %}
+  </tbody>
+    </table>
+</body>
+
+{% endblock %}

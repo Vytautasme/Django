@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Countries</h1>
+    {% for country in countries %}
+        <li><a href="{% url 'countries:countries_vote' country.country %}">{{ country.country }}</a></li>
+    {% endfor %}
+    <br>
+    <a class="btn btn-primary" href="{% url 'countries:country_add' %}" role="button">Add Country</a>
+{% endblock %}

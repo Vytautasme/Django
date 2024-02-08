@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>This is Country delete page</h1>
+<h2>Are you sure you want to delete {{ country }} ?</h2>
+
+<form action="" method="post">
+     {% csrf_token %}
+    <button type="submit" class="btn btn-danger" role="button">Yes</button>
+</form>
+    <a class="btn btn-primary" href="{% url 'countries:countries' %}" role="button">No</a>
+
+{% endblock %}

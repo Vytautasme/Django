@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ country.country }}</h1>
+
+<ul>
+{% for city in country.city_set.all %}
+    <li>{{ city.city }} -- {{ city.vote }} vote{{ city.vote|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'countries:countries_vote' country.country %}">Vote again?</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{% url 'countries:countries_vote' country.country %}" method="post">
+        {% csrf_token %}
+    <fieldset>
+        <legend><h1> Tekstas </h1></legend>
+        {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            {% for city in country.city_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ city.id }}">
+                <label for="choice{{ forloop.counter }}">{{ city.city }}</label><br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Vote">
+        <a class="btn btn-danger" href="{% url 'countries:delete_country' country.country %}" role="button">Delete Country</a>
+    </form>
+{% endblock %}
